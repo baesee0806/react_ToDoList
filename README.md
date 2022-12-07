@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+## 1일차
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> ToDoList 만들기 -React
 
-## Available Scripts
+```
+import { useState } from 'react';
+function WorkList(props){
+  return (
+  <div>
+    <h2>{props.list.title}</h2>
+    <p>{props.list.content}</p>
+    <button onClick={()=>{props.deleteList(props.list.id)}}>삭제하기</button>
+    <button onClick={()=>{props.completion(props.list.id)}}>완료</button>
+  </div>
 
-In the project directory, you can run:
+  )
+}
 
-### `yarn start`
+function App() {
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  // 유저 리스트
+   const [lists,setLists] = useState([])
+   // 추가 버튼 누를시 추가될 제목과 내용
+   const [title,setTitle] = useState('')
+   const [content,setContent] = useState('')
+   const [completion,setcompletion] = useState('')
+  //  추가 버튼
+   const addListHandler =()=>{
+    const newList={
+      id:lists.length+1,
+      title:title,
+      content:content,
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    }
+      setLists([...lists,newList])
+   }
+  //  삭제 버튼
+   const deleteListHandler =(id)=>{
+    const newContentList = lists.filter((list)=>list.id !== id)
+    setLists(newContentList)
+   }
+  // 완료 버튼
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  // 취소 버튼
 
-### `yarn build`
+  return (
+    <div >
+      {/* 투두리스트 제목 리엑트 */}
+      <div>
+        <h1>My ToDo List</h1>
+        <h1>React</h1>
+      </div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    {/* 추가하기 */}
+      <div>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        <label id='title'>제목</label>
+        <input id='title'
+        value={title}
+        placeholder="제목을 입력해주세요"
+        onChange={(e) => setTitle(e.target.value)}
+      />
+        <label id='content'>내용</label>
+        <input  id='content'
+        value={content}
+        placeholder="내용을 입력해주세요"
+        onChange={(e) => setContent(e.target.value)}
+      />
+        <button onClick={addListHandler}>추가하기</button>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+      </div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+      {/* Working */}
+      <h2>Working..🔥</h2>
+      <div id='work'>
+        {lists.map((list)=>{return <WorkList deleteList={deleteListHandler} completion={completionListHandler} list={list} key={list.id}/>})}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        </div>
+      {/* Done */}
+      <h2>Done..🎉</h2>
+      <div id='done'>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+      </div>
+    </div>
+  );
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+}
 
-## Learn More
+export default App;
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> 구현한것
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- working에 추가한 componet 보여주기 완료 !
 
-### Code Splitting
+- 삭제구현 완료
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> 구현 못한것
 
-### Analyzing the Bundle Size
+- 완료 버튼 누를시 Done에 보여지기
+- Done 부분에서 취소 버튼 누를시에 다시 working부분으로 가는것
+- css
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 2일차
 
-### Making a Progressive Web App
+- 완료 버튼 누를시 Done에 보여지기
+- Done 부분에서 취소 버튼 누를시에 다시 working부분으로 가는것
+- css
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+완성!!
 
-### Advanced Configuration
+## 아쉬운점
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- css 레이아웃 짜는게 너무 어렵다
+- component 쪼개기를 어떻게 할지 모르겠다.
