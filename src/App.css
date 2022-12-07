@@ -1,0 +1,59 @@
+.layout{
+    max-width: 1200px;
+    min-width: 800px;
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+
+  .title{
+    display: flex;
+    justify-content: space-between;
+    
+    
+  }
+
+  /* list 추가 영역*/
+  .addList{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    background-color: grey;
+  }
+  .addList-titleContnent {
+    display: flex;
+    align-items: center;
+  }
+  .addList-titleContnent label{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .addList-titleContnent input{
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    margin-right: 30px;
+    width: 300px;
+
+  }
+  /* list 추가 버튼  */
+  .addList-btn button{
+    background-color: #e7e7e7; 
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 9px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 30px;
+    
+  }
+  
+ #work , #done{
+    display: flex;
+    flex-wrap: wrap
+ }
